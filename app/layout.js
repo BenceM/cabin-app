@@ -2,8 +2,12 @@ import Logo from "@/app/_components/Logo";
 import Navigation from "@/app/_components/Navigation";
 import "@/app/_styles/globals.css";
 export const metadata = {
-	title: "The Wild Oasis",
-	description: "Cabin renting webpage",
+	title: {
+		template: "%s - The Wild Oasis",
+		default: "Welcome - The Wild Oasis",
+	},
+	description:
+		"Luxorius Cabin hotel, located in the hearts of the Italian Alps. Surrounded by the Dolomites, mountain lakes and serenity of the Italian mountain life.",
 };
 
 export default function RootLayout({ children }) {
