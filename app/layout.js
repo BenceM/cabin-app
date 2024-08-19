@@ -2,6 +2,7 @@ import Logo from "@/app/_components/Logo";
 import Navigation from "@/app/_components/Navigation";
 import { Josefin_Sans } from "next/font/google";
 import "@/app/_styles/globals.css";
+import Header from "./_components/Header";
 
 const josefin = Josefin_Sans({
 	subsets: ["latin"],
@@ -22,10 +23,10 @@ export default function RootLayout({ children }) {
 			<body
 				className={`${josefin.className} bg-primary-950 min-h-screen text-primary-100`}
 			>
-				<header>
+				<Header>
 					<Logo />
 					<Navigation />
-				</header>
+				</Header>
 				<main>{children}</main>
 			</body>
 		</html>
