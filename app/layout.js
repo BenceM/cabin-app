@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body
-				className={`${josefin.className} bg-primary-950 min-h-screen text-primary-100 flex flex-col antialiased `}
+				className={`${josefin.className}  bg-primary-950 min-h-screen text-primary-100 flex flex-col antialiased `}
 			>
 				<Header />
 				<div className="flex-1 px-8 py-12">
