@@ -1,12 +1,17 @@
 import Logo from "@/app/_components/Logo";
 import Navigation from "@/app/_components/Navigation";
-import { Josefin_Sans } from "next/font/google";
+import { Josefin_Sans, Montserrat_Alternates } from "next/font/google";
 import "@/app/_styles/globals.css";
 import Header from "./_components/Header";
 
 const josefin = Josefin_Sans({
 	subsets: ["latin"],
 	display: "swap",
+});
+const montserrat = Montserrat_Alternates({
+	subsets: ["latin"],
+	display: "swap",
+	weight: ["300", "600"],
 });
 export const metadata = {
 	title: {
