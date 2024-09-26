@@ -48,6 +48,18 @@ export const getCabins = async function () {
 
 	return data;
 };
+export const getCabinsLength = async function () {
+	const { count, error } = await supabase
+		.from("cabins")
+		.select("*", { count: "exact", head: true });
+
+	if (error) {
+		console.error(error);
+		throw new Error("Couldn't fetch the number of cabins");
+	}
+	console.log(count);
+	return count;
+};
 
 // Guests are uniquely identified by their email address
 export async function getGuest(email) {
