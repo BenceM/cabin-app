@@ -1,9 +1,9 @@
 "use client";
 import { isWithinInterval } from "date-fns";
-import { DayPicker, getDefaultClassNames, Matcher } from "react-day-picker";
-import "react-day-picker/style.css";
+import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import classNames from "react-day-picker/style.module.css";
+import "react-day-picker/style.css";
+import { useReservation } from "./ReservationContext";
 
 function isAlreadyBooked(range, datesArr) {
 	return (
@@ -16,20 +16,18 @@ function isAlreadyBooked(range, datesArr) {
 }
 
 function DateSelector({ bookedDates, settings, cabin }) {
-	const defaultClassNames = getDefaultClassNames();
-	console.log(classNames);
+	const dateInFuture = new Date().setFullYear(new Date().getFullYear() + 5);
+	const { range, setRange, resetRange } = useReservation();
+	const handleSelect = (newRange) => setRange(newRange);
+
+	console.log(range);
 	const arrayMatcher = [new Date(), new Date(2019, 1, 4)];
 	// CHANGE
 	const { regularPrice, discount, numNights, cabinPrice } = cabin;
-
 	const { from, to } = bookedDates;
-	const range = { from, to };
 
 	// SETTINGS
 	const { minBookingLength, maxBookingLength } = settings;
-
-	console.log(new Date().getFullYear() + 5);
-	const dateInFuture = new Date().setFullYear(new Date().getFullYear() + 5);
 
 	return (
 		<div className="flex flex-col justify-between">
@@ -38,12 +36,15 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				mode="range"
 				min={minBookingLength + 1}
 				max={maxBookingLength}
+				selected={range}
+				onSelect={handleSelect}
 				startMonth={new Date(new Date().getFullYear(), 0, 1)}
 				disabled={arrayMatcher}
 				// hidden={[{ before: new Date(2010, 11, 3) }]}
 				endMonth={dateInFuture}
 				captionLayout="dropdown"
 				numberOfMonths={2}
+				excludeDisabled={true}
 			/>
 
 			<div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px] mx-10">
@@ -77,7 +78,7 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				{range.from || range.to ? (
 					<button
 						className="border border-primary-800 py-2 px-4 text-sm font-semibold"
-						onClick={() => resetRange()}
+						onClick={resetRange}
 					>
 						Clear
 					</button>
