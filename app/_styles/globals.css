@@ -42,10 +42,18 @@
 	--rdp-day-height: 2rem !important; /* The height of the day cells. */
 	--rdp-day-width: 2rem !important; /* The width of the day cells. */
 	--rdp-accent-color: theme("colors.accent.500") !important;
-	--rdp-background-color: theme("colors.accent.600") !important;
+	--rdp-background-color: theme("colors.accent.500") !important;
 	--rdp-font-family: inherit !important;
 	--rdp-range_middle-background-color: theme(
 		"colors.accent.600"
 	) !important; /* The color of the background for days in the middle of a range. */
 	margin: 0 !important;
 }
+
+.rdp-dropdown {
+	background-color: theme("colors.primary.800");
+}
+
+/*
+
+*/

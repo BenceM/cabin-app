@@ -72,7 +72,8 @@ export default async function Page({ params }) {
 
 			<div>
 				<h2 className="text-5xl font-semibold text-center pb-6">
-					Reserve Cabin {name} today. Pay on arrival.
+					Reserve Cabin {name} today. Pay on arrival. STYLE THE DAYPICKER IN
+					GLOBALS.CSS
 				</h2>
 			</div>
 			<div className="grid grid-cols-2 border-primary-800 min-h-[400px]">

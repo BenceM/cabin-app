@@ -37,9 +37,9 @@ function DateSelector() {
 				mode="range"
 				min={minBookingLength + 1}
 				max={maxBookingLength}
-				// startMonth={new Date().setMonth(new Date().getMonth() - 1)}
+				startMonth={new Date(new Date().getFullYear(), 0, 1)}
 				// hidden={[{ before: new Date(2010, 11, 3) }]}
-				// endMonth={dateInFuture}
+				endMonth={dateInFuture}
 				captionLayout="dropdown"
 				numberOfMonths={2}
 			/>
