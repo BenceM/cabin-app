@@ -1,9 +1,10 @@
 "use client";
 import { isWithinInterval } from "date-fns";
-import { Chevron, DayPicker, getDefaultClassNames } from "react-day-picker";
+import { DayPicker, getDefaultClassNames, Matcher } from "react-day-picker";
 import "react-day-picker/style.css";
 import "react-day-picker/dist/style.css";
 import classNames from "react-day-picker/style.module.css";
+
 function isAlreadyBooked(range, datesArr) {
 	return (
 		range.from &&
@@ -14,19 +15,19 @@ function isAlreadyBooked(range, datesArr) {
 	);
 }
 
-function DateSelector() {
+function DateSelector({ bookedDates, settings, cabin }) {
 	const defaultClassNames = getDefaultClassNames();
 	console.log(classNames);
+	const arrayMatcher = [new Date(), new Date(2019, 1, 4)];
 	// CHANGE
-	const regularPrice = 23;
-	const discount = 23;
-	const numNights = 23;
-	const cabinPrice = 23;
-	const range = { from: null, to: null };
+	const { regularPrice, discount, numNights, cabinPrice } = cabin;
+
+	const { from, to } = bookedDates;
+	const range = { from, to };
 
 	// SETTINGS
-	const minBookingLength = 1;
-	const maxBookingLength = 23;
+	const { minBookingLength, maxBookingLength } = settings;
+
 	console.log(new Date().getFullYear() + 5);
 	const dateInFuture = new Date().setFullYear(new Date().getFullYear() + 5);
 
@@ -38,6 +39,7 @@ function DateSelector() {
 				min={minBookingLength + 1}
 				max={maxBookingLength}
 				startMonth={new Date(new Date().getFullYear(), 0, 1)}
+				disabled={arrayMatcher}
 				// hidden={[{ before: new Date(2010, 11, 3) }]}
 				endMonth={dateInFuture}
 				captionLayout="dropdown"
