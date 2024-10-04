@@ -18,14 +18,14 @@ function Guest() {
 						className="h-8 rounded-full"
 						referrerPolicy="no-referrer"
 					/>
-					<span>Account</span>
+					<span>Guest Area</span>
 				</Link>
 			) : (
 				<Link
 					href="/account"
 					className="hover:text-accent-400 transition-colors"
 				>
-					Account
+					Guest Area
 				</Link>
 			)}
 		</li>

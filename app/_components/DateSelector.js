@@ -20,7 +20,6 @@ function DateSelector({ bookedDates, settings, cabin }) {
 	const { range, setRange, resetRange } = useReservation();
 	const handleSelect = (newRange) => setRange(newRange);
 
-	console.log(range);
 	const arrayMatcher = [new Date(), new Date(2019, 1, 4)];
 	// CHANGE
 	const { regularPrice, discount, numNights, cabinPrice } = cabin;
