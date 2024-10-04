@@ -1,5 +1,7 @@
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
+import { useAuth } from "./AuthContext";
 import DateSelector from "./DateSelector";
+import LoginMessage from "./LoginMessage";
 import ReservationForm from "./ReservationForm";
 
 async function Reservation({ cabin }) {
@@ -7,6 +9,7 @@ async function Reservation({ cabin }) {
 		getBookedDatesByCabinId(cabin.id),
 		getSettings(),
 	]);
+	//const session = useAuth();
 	return (
 		<div className="grid grid-cols-2 border-primary-800 min-h-[400px]">
 			<DateSelector
@@ -14,7 +17,9 @@ async function Reservation({ cabin }) {
 				settings={settings}
 				cabin={cabin}
 			/>
+			{/* {session?.user ?  */}
 			<ReservationForm cabin={cabin} />
+			{/* //: <LoginMessage />} */}
 		</div>
 	);
 }

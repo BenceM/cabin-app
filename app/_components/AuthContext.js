@@ -1,9 +1,11 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+
+import { createContext, useContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+
 const AuthContext = createContext(null);
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
 	const { data: session, status } = useSession();
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -22,12 +24,6 @@ export function AuthProvider({ children }) {
 			{children}
 		</AuthContext.Provider>
 	);
-}
+};
 
-export function useAuth() {
-	const context = useContext(AuthContext);
-	if (context === undefined)
-		throw new Error("context was used outside provider");
-
-	return context;
-}
+export const useAuth = () => useContext(AuthContext);

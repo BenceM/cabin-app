@@ -1,7 +1,13 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./*"]
+		},
+		"jsx": "preserve"
+	},
+	"exclude": [
+		"node_modules", // Excludes node_modules folder
+		"**/*.ts", // Ignores any TypeScript files
+		"**/*.tsx" // Ignores any TypeScript files with JSX
+	]
 }
