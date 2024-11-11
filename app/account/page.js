@@ -1,4 +1,6 @@
-import { useAuth } from "../_components/AuthContext";
+import { Suspense } from "react";
+import LoginNameDisplay from "../_components/LoginNameDisplay";
+import Spinner from "../_components/Spinner";
 
 export const metadata = {
 	title: "Profile",
@@ -7,6 +9,8 @@ export const metadata = {
 export default function Page() {
 	// const { user } = useAuth();
 	return (
-		<h2 className="font-semibold text-2xl text-accent-400 mb-7">Welcome</h2>
+		// <Suspense fallback={<Spinner />}>
+		<LoginNameDisplay />
+		// </Suspense>
 	);
 }
