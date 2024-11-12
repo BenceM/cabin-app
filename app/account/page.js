@@ -1,13 +1,13 @@
-import { Suspense } from "react";
 import LoginNameDisplay from "../_components/LoginNameDisplay";
-import Spinner from "../_components/Spinner";
+import { auth } from "../_lib/auth";
 
 export const metadata = {
 	title: "Profile",
 };
 
-export default function Page() {
-	// const { user } = useAuth();
+export default async function Page() {
+	const session = await auth();
+	console.log(session);
 	return (
 		// <Suspense fallback={<Spinner />}>
 		<LoginNameDisplay />
