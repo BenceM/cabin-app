@@ -6,8 +6,6 @@ export const metadata = {
 };
 
 export default async function Page() {
-	const session = await auth();
-	console.log(session);
 	return (
 		// <Suspense fallback={<Spinner />}>
 		<LoginNameDisplay />
