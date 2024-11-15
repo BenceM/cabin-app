@@ -1,4 +1,4 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 import DeleteReservation from "./DeleteReservation";
 import Image from "next/image";
@@ -71,7 +71,7 @@ function ReservationCard({ booking }) {
 			</div>
 
 			<div className="flex flex-col border-l border-primary-800 w-[100px]">
-				{!isPastDate && (
+				{!isPastDate ? (
 					<>
 						<Link
 							href={`/account/reservations/edit/${id}`}
@@ -82,6 +82,10 @@ function ReservationCard({ booking }) {
 						</Link>
 						<DeleteReservation bookingId={id} />
 					</>
+				) : (
+					<div className="flex items-center justify-center h-full">
+						<CheckIcon className="h-10 w-10 text-primary-600 group-hover:text-primary-800 transition-colors" />
+					</div>
 				)}
 			</div>
 		</div>
