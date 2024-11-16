@@ -14,7 +14,7 @@ export async function updateProfile(formData) {
 	if (!regex.test(nationalID)) throw new Error("Invalid national ID");
 	const updateData = { nationality, countryFlag, nationalID };
 
-	const { data, error } = await supabase
+	const { error } = await supabase
 		.from("guests")
 		.update(updateData)
 		.eq("id", session.user.guestId);
@@ -32,6 +32,7 @@ export async function deleteReservation(bookingId) {
 		.eq("id", bookingId);
 
 	if (error) throw new Error("Booking could not be deleted");
+	revalidatePath("/accont/reservations");
 }
 
 export async function signInAction() {
