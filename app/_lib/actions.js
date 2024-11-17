@@ -7,7 +7,6 @@ import { getBookings } from "./data-service";
 
 export async function updateProfile(formData) {
 	const session = await auth();
-	if (!session) throw new Error("User not authenticated");
 
 	const nationalID = formData.get("nationalID");
 	const [nationality, countryFlag] = formData.get("nationality").split("%");
