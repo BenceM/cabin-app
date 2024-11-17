@@ -1,12 +1,10 @@
 "use client";
-import { useState } from "react";
 
 import Image from "next/image";
 import { updateProfile } from "../_lib/actions";
-import FormButton from "./formButton";
+import FormButton from "./FormButton";
 
 function UpdateProfileForm({ guest, children }) {
-	const [count, setCount] = useState();
 	const { fullName, email, nationality, nationalID, countryFlag } = guest;
 
 	return (

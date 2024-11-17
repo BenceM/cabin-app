@@ -7,6 +7,7 @@ export const metadata = { title: "Reservations" };
 export default async function Page() {
 	// CHANGE
 	const session = await auth();
+	if (!session) throw new Error("User not authenticated");
 	const bookings = await getBookings(session.user.guestId);
 
 	return (
