@@ -1,14 +1,26 @@
-export default function Page() {
-	const reservationId = 23;
-	const maxCapacity = 23;
+import { updateReservation } from "@/app/_lib/actions";
+import { getBooking, getCabin } from "@/app/_lib/data-service";
 
+export default async function Page({ params }) {
+	const { bookingId } = params;
+	//do the checks in the edit serveraction check for session and if they have the right to edit as in the delete
+
+	const { numGuests, observations, cabinId } = await getBooking(bookingId);
+	const { maxCapacity } = await getCabin(cabinId);
+
+	function handleUpdate(formData) {
+		updateReservation(formData);
+	}
 	return (
 		<div>
 			<h2 className="font-semibold text-2xl text-accent-400 mb-7">
-				Edit Reservation #{reservationId}
+				Edit Reservation #{bookingId}
 			</h2>
 
-			<form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+			<form
+				action={handleUpdate}
+				className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+			>
 				<div className="space-y-2">
 					<label htmlFor="numGuests">How many guests?</label>
 					<select
@@ -34,6 +46,7 @@ export default function Page() {
 					</label>
 					<textarea
 						name="observations"
+						placeholder={observations}
 						className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
 					/>
 				</div>
