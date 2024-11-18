@@ -3,7 +3,7 @@ import { useFormStatus } from "react-dom";
 
 import SpinnerMini from "./SpinnerMini";
 
-export default function FormButton() {
+export default function FormButton({ children }) {
 	const { pending } = useFormStatus();
 
 	return (
@@ -16,7 +16,7 @@ export default function FormButton() {
 					<SpinnerMini />
 				</div>
 			) : (
-				"Update profile"
+				children
 			)}
 		</button>
 	);

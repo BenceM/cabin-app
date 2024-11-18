@@ -21,41 +21,53 @@ export async function updateProfile(formData) {
 		.eq("id", session.user.guestId);
 
 	if (error) throw new Error("Guest could not be updated");
-	revalidatePath("/accont/profile");
+	revalidatePath("/account/profile");
 }
 
 export async function deleteReservation(bookingId) {
+	//Authentication
 	const session = await auth();
 	if (!session) throw new Error("User not authenticated");
-
+	//Authorization
 	const guestBookings = await getBookings(session.user.guestId);
 	const guestBookingIds = guestBookings.map((booking) => booking.id);
 	if (!guestBookingIds.includes(bookingId))
 		throw new Error("You don't have the permission to delete this booking");
+	//deletion
 	const { error } = await supabase
 		.from("bookings")
 		.delete()
 		.eq("id", bookingId);
 
 	if (error) throw new Error("Booking could not be deleted");
+	//cache refresh
 	revalidatePath("/account/reservations");
 }
 
 export async function updateReservation(formData) {
+	const bookingId = Number(formData.get("bookingId"));
+
 	const session = await auth();
 	if (!session) throw new Error("User not authenticated");
-	const [bookingId] = formData;
-	const guestBooking = await getBooking(bookingId);
 
-	if (!guestBooking.id === bookingId)
-		throw new Error("You don't have the permission to delete this booking");
+	const guestBookings = await getBookings(session.user.guestId);
+	const guestBookingIds = guestBookings.map((booking) => booking.id);
+	if (!guestBookingIds.includes(bookingId))
+		throw new Error("You don't have the permission to update this booking");
+	const updateData = {
+		numGuests: Number(formData.get("numGuests")),
+		observations: formData.get("observations").slice(0, 1000),
+	};
 	const { error } = await supabase
 		.from("bookings")
-		.update(formData)
+		.update(updateData)
 		.eq("id", bookingId);
 
 	if (error) throw new Error("Booking could not be deleted");
+	//cache revalidation for parent and child
 	revalidatePath("/account/reservations");
+	revalidatePath(`/account/reservations/edit/${bookingId}`);
+
 	redirect("/account/reservations");
 }
 
