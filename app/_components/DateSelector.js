@@ -1,5 +1,5 @@
 "use client";
-import { isWithinInterval } from "date-fns";
+import { differenceInDays, isWithinInterval } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import "react-day-picker/style.css";
@@ -22,7 +22,10 @@ function DateSelector({ bookedDates, settings, cabin }) {
 
 	const arrayMatcher = [new Date(), new Date(2019, 1, 4)];
 	// CHANGE
-	const { regularPrice, discount, numNights, cabinPrice } = cabin;
+	const { regularPrice, discount } = cabin;
+	const numNights = differenceInDays(range.to, range.from);
+	const cabinPrice = numNights * (regularPrice - discount);
+
 	const { from, to } = bookedDates;
 
 	// SETTINGS
