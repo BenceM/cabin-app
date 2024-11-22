@@ -1,5 +1,10 @@
 "use client";
-import { differenceInDays, isWithinInterval } from "date-fns";
+import {
+	differenceInDays,
+	isPast,
+	isSameDay,
+	isWithinInterval,
+} from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import "react-day-picker/style.css";
@@ -41,7 +46,11 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				selected={range}
 				onSelect={handleSelect}
 				startMonth={new Date(new Date().getFullYear(), 0, 1)}
-				disabled={arrayMatcher}
+				// disabled={arrayMatcher}
+				disabled={(curDate) =>
+					isPast(curDate) ||
+					bookedDates.some((date) => isSameDay(date, curDate))
+				}
 				// hidden={[{ before: new Date(2010, 11, 3) }]}
 				endMonth={dateInFuture}
 				captionLayout="dropdown"
