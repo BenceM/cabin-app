@@ -15,6 +15,7 @@ function ReservationForm({ cabin, user }) {
 	const numNights = differenceInDays(endDate, startDate);
 	const cabinPrice = numNights * (regularPrice - discount);
 
+	//passing the bookingData in as an argument instead of using the .bind(null, bookingData) seems to work the same, haven't found any explanation in the nextjs documentation though
 	const bookingData = {
 		startDate,
 		endDate,
