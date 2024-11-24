@@ -24,7 +24,10 @@ export async function updateProfile(formData) {
 	revalidatePath("/account/profile");
 }
 
-export async function createBooking(formData) {}
+export async function createBooking(bookingData, formData) {
+	console.log(formData);
+	console.log(bookingData);
+}
 
 export async function deleteBooking(bookingId) {
 	//Authentication
