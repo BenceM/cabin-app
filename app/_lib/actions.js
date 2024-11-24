@@ -24,7 +24,9 @@ export async function updateProfile(formData) {
 	revalidatePath("/account/profile");
 }
 
-export async function deleteReservation(bookingId) {
+export async function createBooking(formData) {}
+
+export async function deleteBooking(bookingId) {
 	//Authentication
 	const session = await auth();
 	if (!session) throw new Error("User not authenticated");

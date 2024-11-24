@@ -31,9 +31,9 @@ function DateSelector({ bookedDates, settings, cabin }) {
 	const numNights = differenceInDays(range.to, range.from);
 	const cabinPrice = numNights * (regularPrice - discount);
 
-	const { from, to } = bookedDates;
-
 	// SETTINGS
+	//Could put the selector before the cabins and selecting dates would filter down to available cabins
+	// NEEDS A BIG REFACTOR
 	const { minBookingLength, maxBookingLength } = settings;
 
 	return (
