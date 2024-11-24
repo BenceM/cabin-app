@@ -4,13 +4,14 @@ import { differenceInDays } from "date-fns";
 import { useAuth } from "./AuthContext";
 import { useReservation } from "./ReservationContext";
 import { createBooking } from "../_lib/actions";
+import { setLocalHoursToUTCOffset } from "../_lib/helpers";
 
 function ReservationForm({ cabin, user }) {
 	// CHANGE
 	const { range } = useReservation();
 	const { maxCapacity, regularPrice, discount, id } = cabin;
-	const startDate = range.from;
-	const endDate = range.to;
+	const startDate = setLocalHoursToUTCOffset(range.from);
+	const endDate = setLocalHoursToUTCOffset(range.to);
 	const numNights = differenceInDays(endDate, startDate);
 	const cabinPrice = numNights * (regularPrice - discount);
 
