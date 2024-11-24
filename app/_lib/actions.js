@@ -44,6 +44,9 @@ export async function createBooking(bookingData, formData) {
 	const { error } = await supabase.from("bookings").insert([newBooking]);
 
 	if (error) throw new Error("Booking could not be created");
+	revalidatePath(`/cabins/${bookingData.cabinId}`);
+	revalidatePath("/account/reservations");
+	redirect("/account/reservations");
 }
 
 export async function deleteBooking(bookingId) {

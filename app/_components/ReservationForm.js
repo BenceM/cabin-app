@@ -8,7 +8,7 @@ import { setLocalHoursToUTCOffset } from "../_lib/helpers";
 
 function ReservationForm({ cabin, user }) {
 	// CHANGE
-	const { range } = useReservation();
+	const { range, resetRange } = useReservation();
 	const { maxCapacity, regularPrice, discount, id } = cabin;
 	const startDate = setLocalHoursToUTCOffset(range.from);
 	const endDate = setLocalHoursToUTCOffset(range.to);
@@ -42,7 +42,10 @@ function ReservationForm({ cabin, user }) {
 			</div>
 
 			<form
-				action={(formData) => createBooking(bookingData, formData)}
+				action={async (formData) => {
+					await createBooking(bookingData, formData);
+					resetRange();
+				}}
 				className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
 			>
 				<div className="space-y-2">
