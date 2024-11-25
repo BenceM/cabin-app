@@ -35,13 +35,15 @@ function UpdateProfileForm({ guest, children }) {
 			<div className="space-y-2">
 				<div className="flex items-center justify-between">
 					<label htmlFor="nationality">Where are you from?</label>
-					<Image
-						src={countryFlag}
-						alt="Country flag"
-						className="h-5 rounded-sm"
-						width={24}
-						height={12}
-					/>
+					{countryFlag && (
+						<Image
+							src={countryFlag}
+							alt="Country flag"
+							className="h-5 rounded-sm"
+							width={24}
+							height={12}
+						/>
+					)}
 				</div>
 				{children}
 			</div>
@@ -49,7 +51,7 @@ function UpdateProfileForm({ guest, children }) {
 			<div className="space-y-2">
 				<label htmlFor="nationalID">National ID number</label>
 				<input
-					defaultValue={nationalID}
+					defaultValue={nationalID ?? ""}
 					name="nationalID"
 					className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
 				/>

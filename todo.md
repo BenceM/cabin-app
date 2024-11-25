@@ -12,7 +12,7 @@ this choice
 then the available next steps based on choice
 Choose extras page
 login
-then pay or just pay + the details you provide without signup
+then pay or just pay (stripe) + the details you provide without signup
 
 also need to add dark/ light toggle could use the new css for it
 need to optimize images
