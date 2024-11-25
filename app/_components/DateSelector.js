@@ -24,9 +24,8 @@ function DateSelector({ bookedDates, settings, cabin }) {
 	const dateInFuture = new Date().setFullYear(new Date().getFullYear() + 5);
 	const { range, setRange, resetRange } = useReservation();
 	const handleSelect = (newRange) => setRange(newRange);
+	// console.log(bookedDates);
 
-	const arrayMatcher = [new Date(), new Date(2019, 1, 4)];
-	// CHANGE
 	const { regularPrice, discount } = cabin;
 	const numNights = differenceInDays(range.to, range.from);
 	const cabinPrice = numNights * (regularPrice - discount);
